@@ -1,7 +1,10 @@
+
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include "encrypt.c"
+#define MAX_LEN 100
 #define NOT_ENOUGH_CLAS 1
 #define NOT_AN_INT 2
 #define TRUE 1
@@ -35,15 +38,40 @@ int is_valid_key(int m, int* key){
     return TRUE;
 }
 int main(int argc, char* argv[]) {
-    if(argc != 3)
-        error(NOT_ENOUGH_CLAS, "clatest: Fatal Error! Program needs at-leat three CLA!");
+    char string_encrypt[MAX_LEN + 1];
+    int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
+    /*if(argc != 2)
+        error(NOT_ENOUGH_CLAS, "clatest: Fatal Error! Program needs at-least three CLA!");*/
     if(!check_integer(argv[1]))
-        error(2, "clatest:Fatal Error! first command-line argument must be an integer!");
-    if(!check_integer(argv[2]))
-        error(3, "clatest:Fatal Error! second command-line argument must be an integer!");
-    printf("This program prints the first ClA as in integer: %d.\n", atoi(argv[2]));
-    if(!check_integer(argv[3]))
-        error(4, "clatest:Fatal Error! second command-line argument must be an integer!");
-    printf("This program prints the first ClA as in integer: %d.\n", atoi(argv[3]));
+        error(2, "clatest: Fatal Error! command-line argument must be an integer!");
+    for (int i = 1; i < atoi(argv[1]) + 2 ; i++) {
+        if(!check_integer(argv[i])){
+            error(2, "clatest: Fatal Error! command-line argument must be an integer!");
+        }
+    }
+
+    printf("This program prints the ClA as in integer: ");
+    for (int i = 2; i < atoi(argv[1]) + 2; ++i) {
+        key[i]= atoi(argv[i]);
+        printf("%d", atoi(argv[i]));
+    }
+    /*if(!is_valid_key(atoi(argv[1]),data)){
+        error(3,"\nFatal Error! Key is not valid \n");
+    }*/
+
+    printf("Please enter your encryption: ");
+    for (int i = 0; i < MAX_LEN; i++) {
+        string_encrypt[i] = getchar();
+        string_encrypt[i] = tolower(string_encrypt[i]);
+        if (string_encrypt[i] == '\n') {//end of user's input
+            string_encrypt[i] = '\0';//string terminator
+            break;
+        }
+    }
+
+
+    char* sub_encrypt = &string_encrypt[5];
+
+    encrypt(sub_encrypt,key);
     return 0;
 }
