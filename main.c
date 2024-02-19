@@ -37,8 +37,11 @@ int is_valid_key(int m, int* key){
     }
     return TRUE;
 }
+
 int main(int argc, char* argv[]) {
     char string_encrypt[MAX_LEN + 1];
+    char *token;
+    int size = 0;
     int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
     /*if(argc != 2)
         error(NOT_ENOUGH_CLAS, "clatest: Fatal Error! Program needs at-least three CLA!");*/
@@ -58,19 +61,34 @@ int main(int argc, char* argv[]) {
     /*if(!is_valid_key(atoi(argv[1]),data)){
         error(3,"\nFatal Error! Key is not valid \n");
     }*/
+    const char delimiters[] = " ,./:;'\t\n";
 
-    printf("Please enter your encryption: ");
+
+    printf("\nPlease enter your encryption: ");
     for (int i = 0; i < MAX_LEN; i++) {
         string_encrypt[i] = getchar();
         string_encrypt[i] = tolower(string_encrypt[i]);
         if (string_encrypt[i] == '\n') {//end of user's input
             string_encrypt[i] = '\0';//string terminator
             break;
-        }
+        }else
+            size ++;
+
     }
 
 
-    char* sub_encrypt = &string_encrypt[5];
+    token = strtok( string_encrypt, delimiters);
+    while( token != NULL ) {
+        printf( " %s\n", token );
+
+        token = strtok(NULL, delimiters);
+    }
+
+    char* sub_encrypt = &string_encrypt[7];
+    for (int i = 0; i < size; ++i) {
+        printf("%c",sub_encrypt[i]);
+
+    }
 
     encrypt(sub_encrypt,key);
     return 0;
