@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include "encrypt.c"
 #define MAX_LEN 100
-#define NOT_ENOUGH_CLAS 1
-#define NOT_AN_INT 2
 #define TRUE 1
 #define FALSE 0
 #define error(code,message) do{fprintf(stderr, "%s\n", message);return code;}while(0)
@@ -43,8 +41,8 @@ int main(int argc, char* argv[]) {
     char *token;
     int size = 0;
     int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
-    /*if(argc != 2)
-        error(NOT_ENOUGH_CLAS, "clatest: Fatal Error! Program needs at-least three CLA!");*/
+    if(argc > 29)
+        error(1, "clatest: Fatal Error! To many command line arguments!");
     if(!check_integer(argv[1]))
         error(2, "clatest: Fatal Error! command-line argument must be an integer!");
     for (int i = 1; i < atoi(argv[1]) + 2 ; i++) {
@@ -55,41 +53,35 @@ int main(int argc, char* argv[]) {
 
     printf("This program prints the ClA as in integer: ");
     for (int i = 2; i < atoi(argv[1]) + 2; ++i) {
-        key[i]= atoi(argv[i]);
+        key[i - 2]= atoi(argv[i]);
         printf("%d", atoi(argv[i]));
     }
-    /*if(!is_valid_key(atoi(argv[1]),data)){
+    if(!is_valid_key(atoi(argv[1]),key)){
         error(3,"\nFatal Error! Key is not valid \n");
-    }*/
-    const char delimiters[] = " ,./:;'\t\n";
+    }
 
-
-    printf("\nPlease enter your encryption: ");
+    printf("\nPlease enter your encryption: \n");
     for (int i = 0; i < MAX_LEN; i++) {
-        string_encrypt[i] = getchar();
+        char c = getchar();
+        if(!isalpha(c) && c != '\n') {
+            i--;
+            continue;
+        }
+        string_encrypt[i] = c;
         string_encrypt[i] = tolower(string_encrypt[i]);
         if (string_encrypt[i] == '\n') {//end of user's input
             string_encrypt[i] = '\0';//string terminator
             break;
-        }else
-            size ++;
+        }
 
-    }
-
-
-    token = strtok( string_encrypt, delimiters);
-    while( token != NULL ) {
-        printf( " %s\n", token );
-
-        token = strtok(NULL, delimiters);
     }
 
     char* sub_encrypt = &string_encrypt[7];
-    for (int i = 0; i < size; ++i) {
-        printf("%c",sub_encrypt[i]);
+    for (int i = 0; i < strlen(sub_encrypt); ++i) {
+       // printf("%c\n",sub_encrypt[i]);
 
     }
 
-    encrypt(sub_encrypt,key);
+    encrypt(sub_encrypt,key,atoi(argv[1]));
     return 0;
 }
