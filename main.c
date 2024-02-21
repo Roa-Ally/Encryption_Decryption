@@ -37,6 +37,12 @@ int is_valid_key(int m, int* key){
     return TRUE;
 }
 int main(int argc, char* argv[]) {
+
+    if(argc <= 3)
+    {
+        error(99, "clatest: Fatal Error! Not enough command line arguments.");
+    }
+
     char string_encrypt[MAX_LEN + 1];
     char string_decrypt[MAX_LEN + 1];
     int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
