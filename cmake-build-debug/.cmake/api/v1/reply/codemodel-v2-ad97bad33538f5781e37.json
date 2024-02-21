@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/roaay/CLionProjects/Encryption_Decryption/cmake-build-debug",
-		"source" : "C:/Users/roaay/CLionProjects/Encryption_Decryption"
+		"build" : "C:/Encryption_Decryption/cmake-build-debug",
+		"source" : "C:/Encryption_Decryption"
 	},
 	"version" : 
 	{

@@ -35,7 +35,6 @@ int is_valid_key(int m, int* key){
     }
     return TRUE;
 }
-
 int main(int argc, char* argv[]) {
     char string_encrypt[MAX_LEN + 1];
     char *token;
@@ -50,7 +49,6 @@ int main(int argc, char* argv[]) {
             error(2, "clatest: Fatal Error! command-line argument must be an integer!");
         }
     }
-
     printf("This program prints the ClA as in integer: ");
     for (int i = 2; i < atoi(argv[1]) + 2; ++i) {
         key[i - 2]= atoi(argv[i]);
@@ -59,7 +57,6 @@ int main(int argc, char* argv[]) {
     if(!is_valid_key(atoi(argv[1]),key)){
         error(3,"\nFatal Error! Key is not valid \n");
     }
-
     printf("\nPlease enter your encryption: \n");
     for (int i = 0; i < MAX_LEN; i++) {
         char c = getchar();
@@ -73,15 +70,11 @@ int main(int argc, char* argv[]) {
             string_encrypt[i] = '\0';//string terminator
             break;
         }
-
     }
-
     char* sub_encrypt = &string_encrypt[7];
     for (int i = 0; i < strlen(sub_encrypt); ++i) {
        // printf("%c\n",sub_encrypt[i]);
-
     }
-
     encrypt(sub_encrypt,key,atoi(argv[1]));
     return 0;
 }

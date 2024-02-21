@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/roaay/CLionProjects/Encryption_Decryption
+# Install script for directory: C:/Encryption_Decryption
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/roaay/CLionProjects/Encryption_Decryption/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Encryption_Decryption/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
