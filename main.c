@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "encrypt.c"
+#include "decrypt.c"
 #define MAX_LEN 100
 #define TRUE 1
 #define FALSE 0
@@ -37,8 +38,7 @@ int is_valid_key(int m, int* key){
 }
 int main(int argc, char* argv[]) {
     char string_encrypt[MAX_LEN + 1];
-    char *token;
-    int size = 0;
+    char string_decrypt[MAX_LEN + 1];
     int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
     if(argc > 29)
         error(1, "clatest: Fatal Error! To many command line arguments!");
@@ -76,5 +76,20 @@ int main(int argc, char* argv[]) {
        // printf("%c\n",sub_encrypt[i]);
     }
     encrypt(sub_encrypt,key,atoi(argv[1]));
+    printf("\nPlease enter your decryption: \n");
+    for (int i = 0; i < MAX_LEN; i++) {
+        char c = getchar();
+        if(!isalpha(c) && c != '\n') {
+            i--;
+            continue;
+        }
+        string_decrypt[i] = c;
+        if (string_decrypt[i] == '\n') {//end of user's input
+            string_decrypt[i] = '\0';//string terminator
+            break;
+        }
+    }
+    char* sub_decrypt = &string_decrypt[7];
+    decrypt(sub_decrypt,key, atoi(argv[1]));
     return 0;
 }
