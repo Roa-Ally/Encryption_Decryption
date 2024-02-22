@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-I. -g -w
-DEPS=
-OBJ = main.o
+CFLAGS=-I. -g -w -lm
+DEPS= main.h
+OBJ = main.o encrypt.o decrypt.o
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 railcipher: $(OBJ)

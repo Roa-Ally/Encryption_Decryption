@@ -18,9 +18,9 @@ char* encrypt(char* plain_text, int* key, int key_length){
                     encrypted_string[i][j] = 'z' - l;
                 }
             }
-            //printf("%c ",encrypted_string[i][j]);
+           // printf("%c ",encrypted_string[i][j]);
         }
-        //printf("%s","\n");
+        // printf("%s","\n");
     }
     for (int j = 0; j < cols; j++) {
         rev_key[key[j]-1] = j;

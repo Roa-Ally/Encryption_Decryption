@@ -3,7 +3,7 @@
 #define MAX_LEN 100
 #define TRUE 1
 #define FALSE 0
-#define error(code,message) do{fprintf(stderr, "%s\n", message);return code;}while(0)
+#define error(code,message) do{fprintf(stdout, "%s\n", message);exit(code);}while(0)
 
 int check_integer(char* str){
     if(strlen(str) == 0)
@@ -34,27 +34,36 @@ int main(int argc, char* argv[]) {
 
     if(argc <= 3)
     {
-        error(99, "clatest: Fatal Error! Not enough command line arguments.");
+        printf("clatest: Fatal Error! Not enough command line arguments.");
+        error(1, "clatest: Fatal Error! Not enough command line arguments.");
+    }
+    if(atoi(argv[1]) > 26){
+        error(3, "clatest: Fatal error! The encryption key length cannot exceed 26.");
+
     }
     char string_encrypt[MAX_LEN + 1];
     char string_decrypt[MAX_LEN + 1];
     int* key  = (int*)calloc(atoi(argv[1]), sizeof(int) );
-    if(argc > 29)
-        error(1, "clatest: Fatal Error! To many command line arguments!");
+    if(argc > 29) {
+        error(2, "clatest: Fatal Error! To many command line arguments!");
+
+    }
     if(!check_integer(argv[1]))
-        error(2, "clatest: Fatal Error! command-line argument must be an integer!");
+        error(4, "clatest: Fatal Error! command-line argument must be an integer!");
     for (int i = 1; i < atoi(argv[1]) + 2 ; i++) {
         if(!check_integer(argv[i])){
-            error(2, "clatest: Fatal Error! command-line argument must be an integer!");
+            error(4, "clatest: Fatal Error! command-line argument must be an integer!");
         }
     }
+
+
     // printf("This program prints the ClA as in integer: ");
     for (int i = 2; i < atoi(argv[1]) + 2; ++i) {
         key[i - 2]= atoi(argv[i]);
-        printf("%d", atoi(argv[i]));
+      //  printf("%d", atoi(argv[i]));
     }
     if(!is_valid_key(atoi(argv[1]),key)){
-        error(3,"\nFatal Error! Key is not valid \n");
+        error(5,"\nFatal Error! Key is not valid \n");
     }
 
     while(TRUE) {

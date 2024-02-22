@@ -19,7 +19,7 @@ char* decrypt(char* cipher_text, int* key, int key_length) {
            // printf("%c ", decrypted_string[i][j]);
 
         }
-       //printf("\n");
+      // printf("\n");
     }
 
 //    for (int i = 0; i < rows; i++) {
