@@ -1,4 +1,4 @@
- **Encryption and Decryption (C)** <br>
+ **Encryption and Decryption (C)** [![My Skills](https://skillicons.dev/icons?i=c)](https://skillicons.dev) <br>
  (Academic) Encrypt and Decrypt Message Based on Key. <br>
  - Evaluated user input regarding key length, composition, and pattern via the command line interface. <br>
  - Based on user input, the system verifies listed parameters, prompting for correct command line input including the key and pattern. <br>
